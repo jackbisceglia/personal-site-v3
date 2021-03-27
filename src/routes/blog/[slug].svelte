@@ -55,8 +55,9 @@
 	} */
 
 	h3 {
-		color: #E0F1EA;
+		margin: 0.2rem 0;
 		font-weight: 500;
+		color: #E0F1EA;
 		font-size: 1.05rem;
 	}
 	.content {
@@ -64,7 +65,7 @@
 		width: 75%;
 		font-size: 1.05rem;
 	}
-
+	
 	a {
 		color: #E0F1EA;
 		text-decoration: none;
@@ -74,11 +75,17 @@
 		color: #13e7b2;
 	}
 	.border {
-        border-bottom: 2px solid #13e7b2;
+		border-bottom: 2px solid #13e7b2;
         width: 2rem;
         height: 1px;
-        margin-bottom: 0.25rem;
+		margin-bottom: 1.5rem;
     }
+	i {
+		color: #E0F1EA;
+		/* color: #13e7b2; */
+		font-size: 0.75rem;
+		margin: 0;
+	}
 </style>
 
 <svelte:head>
@@ -86,6 +93,8 @@
 </svelte:head>
 
 <content in:fade>
+	<!-- <h5>{post.date}</h5> -->
+	<i>{post.date}</i>
 	<SectionTitle title={post.title}/>
 	<h3>{post.subtitle}</h3>
 	<div class="border"></div>

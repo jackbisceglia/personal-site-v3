@@ -84,7 +84,7 @@ footer {
 
 content {
 	background-color: transparent;
-	width: auto;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
