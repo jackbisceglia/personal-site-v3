@@ -3,7 +3,7 @@
 	import EdSection from '../components/EdSection.svelte'
 	import ExpSection from '../components/ExpSection.svelte'
 	import SkillSection from '../components/SkillSection.svelte'
-
+	import {fade, fly, scale, draw, slide } from 'svelte/transition'
 	let education = {
 		school: "University of Massachusetts Amherst",
 		degree: "Bachelors of Science",
@@ -41,24 +41,29 @@
 	]
 </script>
 
+
+
 <svelte:head>
 	<title>About</title>
 </svelte:head>
 <br>
 
-<!-- EDUCATION SECTION -->
-<SectionTitle title={"Education"}/>
-<EdSection options={education}/>
-
-<!-- EXPERIENCE SECTION -->
-<SectionTitle title={"Experience"}/>
-{#each experiences as exp}
+<content in:fade>
+	
+	<!-- EDUCATION SECTION -->
+	<SectionTitle title={"Education"}/>
+	<EdSection options={education}/>
+	
+	<!-- EXPERIENCE SECTION -->
+	<SectionTitle title={"Experience"}/>
+	{#each experiences as exp}
 	<ExpSection options={exp}/>
-{/each}
-<br>
-
-<!-- SKILLS SECTION -->
-<SectionTitle title={"Skills"}/>
-{#each skills as skill}
+	{/each}
+	<br>
+	
+	<!-- SKILLS SECTION -->
+	<SectionTitle title={"Skills"}/>
+	{#each skills as skill}
 	<SkillSection options={skill}/>
-{/each}
+	{/each}
+</content>

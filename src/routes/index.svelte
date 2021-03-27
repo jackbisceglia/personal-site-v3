@@ -1,6 +1,7 @@
 <script>
 	import Intro from '../components/Intro.svelte';
 	import SectionTitle from '../components/SectionTitle.svelte'
+	import {slide, fly} from 'svelte/transition'
 </script>
 
 <svelte:head>
@@ -9,4 +10,6 @@
 
 <SectionTitle title={"Welcome!"}/>
 
-<Intro />
+<content in:slide>
+	<Intro />
+</content>

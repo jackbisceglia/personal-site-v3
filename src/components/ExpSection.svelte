@@ -39,6 +39,7 @@
 
 
 <div class="wrapper">
+
     <p class="company">
         {options.company}
     </p>

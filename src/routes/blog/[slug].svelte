@@ -15,6 +15,8 @@
 
 <script>
 	export let post;
+	import {fade} from 'svelte/transition'
+	import SectionTitle from '../../components/SectionTitle.svelte'
 </script>
 
 <style>
@@ -26,7 +28,7 @@
 		so we have to use the :global(...) modifier to target
 		all elements inside .content
 	*/
-	.content :global(h2) {
+	/* .content :global(h2) {
 		font-size: 1.4em;
 		font-weight: 500;
 	}
@@ -50,15 +52,45 @@
 
 	.content :global(li) {
 		margin: 0 0 0.5em 0;
+	} */
+
+	h3 {
+		color: #E0F1EA;
+		font-weight: 500;
+		font-size: 1.05rem;
 	}
+	.content {
+		color: #E0F1EA;
+		width: 75%;
+		font-size: 1.05rem;
+	}
+
+	a {
+		color: #E0F1EA;
+		text-decoration: none;
+		transition: 0.1s;
+	}
+	a:hover{
+		color: #13e7b2;
+	}
+	.border {
+        border-bottom: 2px solid #13e7b2;
+        width: 2rem;
+        height: 1px;
+        margin-bottom: 0.25rem;
+    }
 </style>
 
 <svelte:head>
 	<title>{post.title}</title>
 </svelte:head>
 
-<h1>{post.title}</h1>
-
-<div class="content">
-	{@html post.html}
-</div>
+<content in:fade>
+	<SectionTitle title={post.title}/>
+	<h3>{post.subtitle}</h3>
+	<div class="border"></div>
+	<div class="content">
+		{@html post.html}
+	</div>
+	<a href="/blog">Back to blogs</a>
+</content>

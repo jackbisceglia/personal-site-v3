@@ -4,18 +4,28 @@
 			return { posts };
 		});
 	}
+
+	import {fade} from 'svelte/transition'
 </script>
 
 <script>
 	export let posts;
 	import SectionTitle from '../../components/SectionTitle.svelte'
-	console.log(posts)
 </script>
 
 <style>
 	ul {
-		margin: 0 0 1em 0;
+		margin: 0;
+		padding: 0;
 		line-height: 1.5;
+		text-align: center;
+	}
+	
+	li {
+		margin: 0.5rem 0;
+		list-style: none;
+		color: #E0F1EA;
+		font-size: 1.05rem;
 	}
 </style>
 
@@ -23,14 +33,18 @@
 	<title>Blog</title>
 </svelte:head>
 
-<SectionTitle title={"jack.rendered"}/>
 
-<ul>
-	{#each posts as post}
+<content in:fade>
+	
+	<SectionTitle title={"jack.rendered"}/>
+	
+	<ul>
+		{#each posts as post}
 		<!-- we're using the non-standard `rel=prefetch` attribute to
-				tell Sapper to load the data for the page as soon as
-				the user hovers over the link or taps it, instead of
-				waiting for the 'click' event -->
-		<li><a rel="prefetch" href="blog/{post.slug}">{post.title}</a></li>
-	{/each}
-</ul>
+			tell Sapper to load the data for the page as soon as
+			the user hovers over the link or taps it, instead of
+			waiting for the 'click' event -->
+			<li><a rel="prefetch" href="blog/{post.slug}">{post.title}</a></li>
+			{/each}
+		</ul>
+</content>
