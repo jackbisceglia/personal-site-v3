@@ -2,12 +2,12 @@
 	import {fade, fly, scale, draw, slide } from 'svelte/transition'
 	import SectionTitle from "../components/SectionTitle.svelte"
 	
+	const makeMessage = () => { return {name: '', email: '', text: ''}}
 
-	let msg = {
-		name: '',
-		email: '',
-		text: ''
-	}
+	let dis = false;
+
+	let msg = makeMessage()
+
 	const updateMessage = (value, type) => {
 		msg = {...msg, [type]: value}
 	}
@@ -20,8 +20,17 @@
 		return values.map(curr => capWord(curr)).join(' ')
 	}
 
+
+	const resetForm = () => {
+		msg = makeMessage();
+		dis = false;
+	}
+
+	const isEqual = (obj1, obj2) => (obj1.name === obj2.name) && (obj1.email === obj2.email) && (obj1.text === obj2.body) 
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		dis = true;
 
 		let details = {
 			method: 'POST', // or 'PUT'
@@ -34,9 +43,19 @@
 				body: msg.text
 			}),
 		}
+		// fetch('https://majestic-wind-cave-43322.herokuapp.com/contactForm/abc', details)
 		fetch('https://majestic-wind-cave-43322.herokuapp.com/contactForm/abc', details)
 			.then(res => res.json())
-			.then(data => console.log(data))
+			.then(data => {
+				console.log(data)
+				console.log(isEqual(msg, data))
+				if (isEqual(msg, data)) {
+					resetForm()
+				}
+				else {
+					showMessage()
+				}
+			})
 
 	}
 </script>
@@ -99,17 +118,17 @@
 		
 		<div class="name">			
 			<label for="">Name</label>
-			<input on:change={(e) => updateMessage(e.target.value, 'name')} class="inputa" type="name">
+			<input disabled={dis} value={msg.name} on:change={(e) => updateMessage(e.target.value, 'name')} class="inputa" type="name">
 		</div>
 		
 		<div class="email">
 			<label for="">Email</label>
-			<input on:change={(e) => updateMessage(e.target.value, 'email')} class="inputa" type="email">
+			<input disabled={dis} value={msg.email} on:change={(e) => updateMessage(e.target.value, 'email')} class="inputa" type="email">
 		</div>
 
 		<div class="bottom">
 			<label for="">Message</label>
-			<textarea on:change={(e) => updateMessage(e.target.value, 'text')} rows="1" cols="1" wrap="physical" name="comments" class="msg" type="text"></textarea>
+			<textarea disabled={dis} value={msg.text} on:change={(e) => updateMessage(e.target.value, 'text')} rows="1" cols="1" wrap="physical" name="comments" class="msg" type="text"></textarea>
 		</div>
 		<button>Submit</button>
 	</form>
