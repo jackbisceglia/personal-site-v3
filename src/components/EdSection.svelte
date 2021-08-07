@@ -24,7 +24,6 @@
 
     .GPA span{
         font-weight: 600;
-        color: #33FFAA; 
     }
 
     .border {

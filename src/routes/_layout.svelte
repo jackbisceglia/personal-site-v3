@@ -3,6 +3,10 @@
 	import Heading from '../components/Heading.svelte';
 	import Footer from '../components/Footer.svelte';
 	export let segment;
+	let pageParameters = 'test'
+
+
+
 </script>
 
 <style>
@@ -24,6 +28,6 @@
 <Nav {segment}/>
 
 <main>
-	<Heading />
+	<Heading/>
 	<slot></slot>
 </main>

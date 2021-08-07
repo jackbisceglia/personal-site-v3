@@ -30,7 +30,7 @@
 
 	let experiences = [
 		makeExp('HubSpot', 'Incoming Software Engineer Co-Op', 'Fall 2021', undefined),
-		makeExp('Nuance Communications', 'Incoming Software Engineer Intern', 'Summer 2021', undefined),
+		makeExp('Nuance Communications', 'Software Engineering Intern', 'Summer 2021', undefined),
 		makeExp('MLH', 'MLH Fellow', 'Spring 2021')
 	]
 
